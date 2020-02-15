@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/crd1"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:layoutDirection="rtl">
+
+    <LinearLayout
+        android:id="@+id/lay_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.20999998">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.sputa.avarez.my_views.MyTextView
+                android:id="@+id/txt_city"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/border_back"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="شهر"
+                android:textColor="@android:color/black"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.sputa.avarez.my_views.MyTextView
+                android:id="@+id/txt_location"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/border_back"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="محل جریمه"
+                android:textColor="@android:color/black"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.sputa.avarez.my_views.MyTextView
+                android:id="@+id/txt_type"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/border_back"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="نوع"
+                android:textColor="@android:color/black"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.sputa.avarez.my_views.MyTextView
+                android:id="@+id/txt_date"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/border_back"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="تاریخ"
+                android:textColor="@android:color/black"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.sputa.avarez.my_views.MyTextView
+                android:id="@+id/txt_delivery"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/border_back"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="تحویل"
+                android:textColor="@android:color/black"
+                android:textSize="9sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.sputa.avarez.my_views.MyTextView
+                android:id="@+id/txt_price"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/border_back"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="مبلغ"
+                android:textColor="@android:color/black"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lay_btn_pay_driving"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/btn_pay_driving"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#179E15"
+                android:gravity="center"
+                android:text=" پرداخت "
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

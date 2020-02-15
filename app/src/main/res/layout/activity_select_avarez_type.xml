@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="rtl"
+    tools:context=".SelectAvarezType">
+
+
+    <LinearLayout
+        android:id="@+id/lay_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="1.5"
+                android:background="#25abe6"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/img_back"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/right_arrow"
+                        android:clickable="true"
+                        android:onClick="clk_back" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="10"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.sputa.avarez.my_views.MyTextView
+                        android:id="@+id/lbl_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="لطفا نوع عوارض را انتخاب کنید"
+                        android:textColor="@android:color/white"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/main_lay"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="9"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:id="@+id/lay_chance_rival"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="#a1a1a1"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:onClick="clk_car_avarez"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#6A8F9397"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#ffffff"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.1"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/img_car"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:src="@drawable/car" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4"
+                                android:gravity="center_vertical|start"
+                                android:orientation="horizontal"
+                                android:paddingStart="10dp">
+
+                                <com.sputa.avarez.my_views.MyTextView
+                                    android:id="@+id/lbl_car_avarez"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="عوارض خودرو"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="20sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/img_next"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:background="@drawable/left_arrow_grey" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lay_chance_rival_shade"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#63929292"
+                        android:orientation="horizontal"
+                        android:visibility="gone"></LinearLayout>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:orientation="vertical"></LinearLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/lay_bussiness"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="#a1a1a1"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:onClick="clk_bussiness_avarez"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#ffffff"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/img_busssiness"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:src="@drawable/store" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:gravity="center_vertical|start"
+                            android:orientation="horizontal"
+                            android:paddingStart="10dp">
+
+                            <com.sputa.avarez.my_views.MyTextView
+                                android:id="@+id/lbl_bussienss"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="عوارض کسب و پیشه"
+                                android:textColor="@android:color/black"
+                                android:textSize="20sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/img_next"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/left_arrow_grey" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lay_bussiness_shade"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#63929292"
+                        android:orientation="horizontal"
+                        android:visibility="gone"></LinearLayout>
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:orientation="vertical"></LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/lay_tabloo"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="#a1a1a1"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:onClick="clk_tablo_avarez"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#ffffff"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/img_panel"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:src="@drawable/panel" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:gravity="center_vertical|start"
+                            android:orientation="horizontal"
+                            android:paddingStart="10dp">
+
+                            <com.sputa.avarez.my_views.MyTextView
+                                android:id="@+id/lbl_panel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="عوارض تابلو"
+                                android:textColor="@android:color/black"
+                                android:textSize="20sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/img_next"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/left_arrow_grey" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lay_tabloo_shade"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#63929292"
+                        android:orientation="horizontal"
+                        android:visibility="gone"></LinearLayout>
+
+                </RelativeLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:orientation="vertical"></LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/lay_pasmand"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="#a1a1a1"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:onClick="clk_pasmand_avarez"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#ffffff"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/img_waste"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:src="@drawable/waste" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:gravity="center_vertical|start"
+                            android:orientation="horizontal"
+                            android:paddingStart="10dp">
+
+                            <com.sputa.avarez.my_views.MyTextView
+                                android:id="@+id/lbl_waste"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="عوارض پسماند"
+                                android:textColor="@android:color/black"
+                                android:textSize="20sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/img_next"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/left_arrow_grey" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lay_pasmand_shade"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#63929292"
+                        android:orientation="horizontal"
+                        android:visibility="gone"></LinearLayout>
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:orientation="vertical"></LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/lay_nosazi"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="#a1a1a1"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:onClick="clk_nosazi_avarez"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#ffffff"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/img_renovation"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:src="@drawable/renovation" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:gravity="center_vertical|start"
+                            android:orientation="horizontal"
+                            android:paddingStart="10dp">
+
+                            <com.sputa.avarez.my_views.MyTextView
+                                android:id="@+id/lbl_renovation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="عوارض نوسازی"
+                                android:textColor="@android:color/black"
+                                android:textSize="20sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/img_next"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/left_arrow_grey" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lay_nosazi_shade"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#63929292"
+                        android:orientation="horizontal"
+                        android:visibility="gone"></LinearLayout>
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:orientation="vertical"></LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/lay_jame"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="#a1a1a1"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:onClick="clk_jame_avarez"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#ffffff"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/img_jame"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:src="@drawable/jame" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:gravity="center_vertical|start"
+                            android:orientation="horizontal"
+                            android:paddingStart="10dp">
+
+                            <com.sputa.avarez.my_views.MyTextView
+                                android:id="@+id/lbl_jame"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="عوارض جامع شهرداری"
+                                android:textColor="@android:color/black"
+                                android:textSize="20sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/img_next"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/left_arrow_grey" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lay_jame_shade"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#63929292"
+                        android:orientation="horizontal"
+                        android:visibility="gone"></LinearLayout>
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>
+
