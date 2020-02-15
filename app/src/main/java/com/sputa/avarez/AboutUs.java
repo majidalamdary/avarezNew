@@ -102,7 +102,7 @@ public class AboutUs extends AppCompatActivity {
         set_size_txt(R.id.txt_software,.05,"cons");
         set_size_txt(R.id.txt_programmer,.05,"cons");
         set_size_txt(R.id.txt_version,.05,"cons");
-
+        String majid="111";
         try {
             PackageInfo pInfo = this.getPackageManager().getPackageInfo(getPackageName(), 0);
             String version = pInfo.versionName;
