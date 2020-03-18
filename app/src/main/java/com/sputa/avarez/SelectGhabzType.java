@@ -203,4 +203,23 @@ public class SelectGhabzType extends AppCompatActivity   {
         }
     }
 
+    public void clk_mci(View view) {
+        if(typ.equals("search") ) {
+            Intent I = new Intent(this, GhabzSearch.class);
+            I.putExtra("type","mci");
+            startActivity(I);
+//            finish();
+        }
+
+    }
+
+    public void clk_irancell(View view) {
+        if(typ.equals("search") ) {
+            Intent I = new Intent(this, GhabzSearch.class);
+            I.putExtra("type","irancell");
+            startActivity(I);
+//            finish();
+        }
+
+    }
 }

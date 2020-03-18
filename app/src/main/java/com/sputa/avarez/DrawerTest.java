@@ -7,9 +7,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -202,8 +205,6 @@ public class DrawerTest extends AppCompatActivity
         lay_main = findViewById(R.id.lay_main);
 
 
-//        Functions.u_id ="4";
-//        Toast.makeText(this, Functions.u_id, Toast.LENGTH_SHORT).show();
         setSupportActionBar(toolbar);
         mTitle.setText(toolbar.getTitle());
 
@@ -252,53 +253,13 @@ public class DrawerTest extends AppCompatActivity
         set_content();
 
 
-        myDB = this.openOrCreateDatabase(getString(R.string.DB_name), MODE_PRIVATE, null);
 
-//        myDB.execSQL("drop table IF EXISTS water");
-//        myDB.execSQL("drop table IF EXISTS waste");
-//        myDB.execSQL("drop table IF EXISTS power");
-//        myDB.execSQL("drop table IF EXISTS Panel");
-//        myDB.execSQL("drop table IF EXISTS Nosazi");
-//        myDB.execSQL("drop table IF EXISTS Gas");
-//        myDB.execSQL("drop table IF EXISTS CellPhone");
-//        myDB.execSQL("drop table IF EXISTS Business");
-//        myDB.execSQL("drop table IF EXISTS MyGhabz");
-        String sql= "CREATE TABLE  IF NOT EXISTS MyNosazi(" +
-                "NosaziID varchar(255) NULL," +
-                "Type varchar(255) NULL" +
-                ");" ;
 
-        myDB.execSQL(sql);
-        sql= "CREATE TABLE  IF NOT EXISTS MyBussiness(" +
-                "BussinessId varchar(255) NULL," +
-                "Type varchar(255) NULL" +
-                ");" ;
 
-        myDB.execSQL(sql);
 
-        sql= "CREATE TABLE  IF NOT EXISTS MyCity(" +
-                "ID varchar(255) NULL," +
-                "CityId varchar(255) NULL," +
-                "Name varchar(255) NULL" +
-                ");" ;
+        CreateTables();
 
-        myDB.execSQL(sql);
 
-        Cursor cr = myDB.rawQuery("select DISTINCT tbl_name  from sqlite_master where tbl_name = 'water'", null);
-        if(cr!=null)
-        {
-            if(cr.getCount()==0) {
-                set_database();
-            }
-        }
-        cr = myDB.rawQuery("select * from water", null);
-        if(cr.getCount()>0)
-        {
-//            cr.moveToFirst();
-//            Toast.makeText(this, cr.getString(0), Toast.LENGTH_SHORT).show();
-//            cr.moveToNext();
-//            Toast.makeText(this, cr.getString(0), Toast.LENGTH_SHORT).show();
-        }
 
         //
         setNotificationCount();
@@ -322,16 +283,13 @@ public class DrawerTest extends AppCompatActivity
                     String message = intent.getStringExtra("message");
 
                       Toast.makeText(getApplicationContext(), "Push notification: " + message, Toast.LENGTH_LONG).show();
-
-                    //  Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-
                 }
             }
         };
         timer = new Timer("timeout");
         timer.start();
 
-        cr = myDB.rawQuery("select * from MyCity", null);
+        Cursor cr = myDB.rawQuery("select * from MyCity", null);
         if(cr.getCount()>0)
         {
             cr.moveToFirst();
@@ -366,8 +324,135 @@ public class DrawerTest extends AppCompatActivity
         });
 
 
-//        load_my_cars();
-        load_eshterak_count();
+
+//        load_eshterak_count();
+    }
+
+    private void CreateTables() {
+
+
+        myDB = this.openOrCreateDatabase(getString(R.string.DB_name), MODE_PRIVATE, null);
+
+
+        myDB.execSQL("drop table if Exists MyCarList");
+        myDB.execSQL("drop table if Exists MyBussinessList");
+        myDB.execSQL("drop table if Exists MyNosaziList");
+
+
+        String sql= "CREATE TABLE  IF NOT EXISTS MyCarList(" +
+                "ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                "CarId varchar(255) NULL," +
+                "Pelak varchar(255) NULL," +
+                "CarName varchar(255) NULL," +
+                "Price number NULL" +
+                ");" ;
+        myDB.execSQL(sql);
+
+        sql= "CREATE TABLE  IF NOT EXISTS MyBussinessList(" +
+                "ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                "BussinessId varchar(255) NULL," +
+                "BussinessName varchar(255) NULL," +
+                "Price number NULL" +
+                ");" ;
+        myDB.execSQL(sql);
+        sql= "CREATE TABLE  IF NOT EXISTS MyNosaziList(" +
+                "ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                "NosaziCode varchar(255) NULL," +
+                "Price number NULL" +
+                ");" ;
+        myDB.execSQL(sql);
+
+        sql= "CREATE TABLE  IF NOT EXISTS MyGasList(" +
+                "ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                "BillId varchar(255) NULL," +
+                "FullName varchar(255) NULL," +
+                "Price number NULL" +
+                ");" ;
+        myDB.execSQL(sql);
+        sql= "CREATE TABLE  IF NOT EXISTS MyGasList(" +
+                "ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                "BillId varchar(255) NULL," +
+                "FullName varchar(255) NULL," +
+                "Price number NULL" +
+                ");" ;
+        myDB.execSQL(sql);
+        sql= "CREATE TABLE  IF NOT EXISTS MyWaterList(" +
+                "ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                "BillId varchar(255) NULL," +
+                "FullName varchar(255) NULL," +
+                "Price number NULL" +
+                ");" ;
+        myDB.execSQL(sql);
+        sql= "CREATE TABLE  IF NOT EXISTS MyElectricList(" +
+                "ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                "BillId varchar(255) NULL," +
+                "FullName varchar(255) NULL," +
+                "Price number NULL" +
+                ");" ;
+        myDB.execSQL(sql);
+        sql= "CREATE TABLE  IF NOT EXISTS MyTelphoneList(" +
+                "ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                "BillId varchar(255) NULL," +
+                "TelNumber varchar(255) NULL," +
+                "Price number NULL" +
+                ");" ;
+        myDB.execSQL(sql);
+        sql= "CREATE TABLE  IF NOT EXISTS MyMciList(" +
+                "ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                "BillId varchar(255) NULL," +
+                "Mobile varchar(255) NULL," +
+                "Price number NULL" +
+                ");" ;
+        myDB.execSQL(sql);
+        sql= "CREATE TABLE  IF NOT EXISTS MyIrancellList(" +
+                "ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                "BillId varchar(255) NULL," +
+                "Mobile varchar(255) NULL," +
+                "Price number NULL" +
+                ");" ;
+        myDB.execSQL(sql);
+        sql= "CREATE TABLE  IF NOT EXISTS MyDrivingList(" +
+                "ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                "BillId varchar(255) NULL," +
+                "Pelak varchar(255) NULL," +
+                "Price number NULL" +
+                ");" ;
+        myDB.execSQL(sql);
+
+
+
+
+        Toast.makeText(this, "123", Toast.LENGTH_SHORT).show();
+
+
+
+
+
+        sql= "CREATE TABLE  IF NOT EXISTS MyNosazi(" +
+                "NosaziID varchar(255) NULL," +
+                "Type varchar(255) NULL" +
+                ");" ;
+
+                    myDB.execSQL(sql);
+
+        sql= "CREATE TABLE  IF NOT EXISTS MyBussiness(" +
+                "BussinessId varchar(255) NULL," +
+                "Type varchar(255) NULL" +
+                ");" ;
+
+        myDB.execSQL(sql);
+
+
+
+        sql= "CREATE TABLE  IF NOT EXISTS MyCity(" +
+                "ID varchar(255) NULL," +
+                "CityId varchar(255) NULL," +
+                "Name varchar(255) NULL" +
+                ");" ;
+
+        myDB.execSQL(sql);
+
+
     }
 
     private void setNotificationCount() {
@@ -494,15 +579,15 @@ public class DrawerTest extends AppCompatActivity
         Asy.execute();
 
         jsonTask = new JsonTask();
-        String url = "http://app.e-paytoll.ir/api/Electric/GetBillList/" + Functions.u_id;
+        String url = getResources().getString(R.string.site_url)+"api/Electric/GetBillList/" + Functions.u_id;
         jsonTask.execute(url, "show_electric");
 
         jsonTask = new JsonTask();
-        url = "http://app.e-paytoll.ir/api/Gas/GetBillList/" + Functions.u_id;
+        url = getResources().getString(R.string.site_url)+"api/Gas/GetBillList/" + Functions.u_id;
         Lag(url);
         jsonTask.execute(url, "show_gas");
         jsonTask = new JsonTask();
-        url = "http://app.e-paytoll.ir/api/Telphone/GetBillList/" + Functions.u_id;
+        url = getResources().getString(R.string.site_url)+"api/Telphone/GetBillList/" + Functions.u_id;
         Lag(url);
         jsonTask.execute(url, "show_telphone");
 
@@ -525,9 +610,13 @@ public class DrawerTest extends AppCompatActivity
     }
 
     private void get_info() {
+
+        fun.enableDisableView(lay_main, false);
+        RelativeLayout lay_message = findViewById(R.id.lay_message);
+        lay_message.setVisibility(View.VISIBLE);
+        LinearLayout lay_wait = findViewById(R.id.lay_wait);
+        lay_wait.setVisibility(View.VISIBLE);
         mm = new MyAsyncTask();
-//        myCityId="123";
-//        regId ="456";
         String query =getResources().getString(R.string.site_url) + "do.aspx?param=get_user_info&ID="+Functions.u_id+ "&city_id="+myCityId+"&gcm_id="+ URLEncoder.encode(regId)+"&rdn="+String.valueOf(new Random().nextInt());
 //        Lag(query);
         last_requested_query = query;
@@ -691,8 +780,12 @@ public class DrawerTest extends AppCompatActivity
 
         } else if (id == R.id.nav_contact_us) {
 
+
         } else if (id == R.id.nav_about_us) {
             startActivity(new Intent(this,AboutUs.class));
+        } else if (id == R.id.nav_download_last_update) {
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://e-paytoll.ir/dl/shahrvand.apk"));
+            startActivity(i);
 
         } else if (id == R.id.nav_exit) {
             fn_exit();
@@ -913,16 +1006,16 @@ public class DrawerTest extends AppCompatActivity
         protected void onPostExecute(Double aDouble) {
 
             Lag("Excuted");
-            if(Type.equals("GetNosaziList")) {
 
+            if(Type.equals("GetNosaziList")) {
                 GetNosaziListResult();
             }
+
             if(Type.equals("GetBussinessList")) {
                 GetBussinessListResult();
             }
 
             if(Type.equals("GetInfoNosazi")) {
-
                 GetInfoNosaziResult();
             }
 
@@ -1211,13 +1304,23 @@ public class DrawerTest extends AppCompatActivity
             if(end1>0) {
                 param_str = ss.substring(start1 + 7, end1);
 //                Toast.makeText(DrawerTest.this, param_str, Toast.LENGTH_SHORT).show();
-
+                Lag(param_str);
                 if (param_str.equals("get_user_info") && is_requested ) {
+
                     start1 = ss.indexOf("<result>");
                     end1 = ss.indexOf("</result>");
 
                     String rslt = ss.substring(start1 + 8, end1);
                     if (!rslt.equals("0")) {
+
+
+                        fun.enableDisableView(lay_main, true);
+                        RelativeLayout lay_message = findViewById(R.id.lay_message);
+                        lay_message.setVisibility(View.GONE);
+                        LinearLayout lay_wait = findViewById(R.id.lay_wait);
+                        lay_wait.setVisibility(View.GONE);
+
+
                         is_requested = false;
                         try {
                             start1 = ss.indexOf("<name>");
@@ -1229,6 +1332,14 @@ public class DrawerTest extends AppCompatActivity
                             start1 = ss.indexOf("<mobile>");
                             end1 = ss.indexOf("</mobile>");
                             rslt_mobile = ss.substring(start1 + 8, end1);
+
+                            start1 = ss.indexOf("<app_version>");
+                            end1 = ss.indexOf("</app_version>");
+                            String appVersion = ss.substring(start1 + 13, end1);
+
+                            start1 = ss.indexOf("<app_min_version>");
+                            end1 = ss.indexOf("</app_min_version>");
+                            String appMinVersion  = ss.substring(start1 + 17, end1);
 
                             itm_city.clear();
                             start1 = ss.indexOf("<city_cnt>");
@@ -1301,6 +1412,7 @@ public class DrawerTest extends AppCompatActivity
 
                             navMobile.setText(rslt_mobile);
                             navname.setText(rslt_name + " " + rslt_family);
+                            CheckAppVersion(appVersion,appMinVersion);
 
 
 
@@ -1424,6 +1536,56 @@ public class DrawerTest extends AppCompatActivity
             //Log.d("majid", resString);
             is.close();
         }
+    }
+
+    private void CheckAppVersion(String appVersion, String appMinVersion) {
+        int version=0;
+        try {
+            PackageInfo pInfo = getBaseContext().getPackageManager().getPackageInfo(getPackageName(), 0);
+            version = pInfo.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        int iAppVersion=Integer.valueOf(appVersion);
+        int iAppMinVersion=Integer.valueOf(appMinVersion);
+        if(version<iAppMinVersion)
+        {
+            AlertDialog.Builder builder;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
+            } else {
+                builder = new AlertDialog.Builder(this);
+            }
+            builder.setTitle("بروزرسانی")
+                    .setMessage("برنامه نیاز به بروزرسانی دارد؟")
+                    .setPositiveButton("دریافت آخرین نسخه", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://e-paytoll.ir/dl/shahrvand.apk"));
+                            startActivity(i);
+                            finish();
+
+                        }
+                    }).setNegativeButton("خروج", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+
+                    // continue with delete
+
+                }
+            })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setCancelable(false)
+                    .show();
+        }
+
+
+        else if(version<iAppVersion)
+        {
+            Toast.makeText(this, "برنامه نیاز به بروزرسانی دارید از منوی کنار می توانید آخرین نسخه را دریافت کنید", Toast.LENGTH_LONG).show();
+        }
+
+
     }
 
     private void EmptyOptions() {

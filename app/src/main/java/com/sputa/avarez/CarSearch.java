@@ -703,6 +703,7 @@ public class CarSearch extends AppCompatActivity {
             lay_message.setVisibility(View.VISIBLE);
             LinearLayout lay_wait = findViewById(R.id.lay_wait);
             lay_wait.setVisibility(View.VISIBLE);
+            tim=1;
             set_size(R.id.lay_wait, .6, .3, "rel");
             set_size_txt(R.id.lbl_please_wait, .05, "line");
             LinearLayout btn_pay = findViewById(R.id.btn_pay);
@@ -864,6 +865,7 @@ public class CarSearch extends AppCompatActivity {
             lay_message.setVisibility(View.VISIBLE);
             LinearLayout lay_wait = findViewById(R.id.lay_wait);
             lay_wait.setVisibility(View.VISIBLE);
+            tim=1;
             set_size(R.id.lay_wait, .6, .3, "rel");
             set_size_txt(R.id.lbl_please_wait, .05, "line");
 
@@ -967,6 +969,7 @@ public class CarSearch extends AppCompatActivity {
             lay_message.setVisibility(View.VISIBLE);
             LinearLayout lay_wait = findViewById(R.id.lay_wait);
             lay_wait.setVisibility(View.VISIBLE);
+            tim=1;
             set_size(R.id.lay_wait, .6, .3, "rel");
             set_size_txt(R.id.lbl_please_wait, .05, "line");
             LinearLayout btn_pay = findViewById(R.id.btn_pay);

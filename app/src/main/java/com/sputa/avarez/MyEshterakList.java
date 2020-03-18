@@ -240,27 +240,27 @@ public class MyEshterakList extends AppCompatActivity implements RecyclerViewCli
 
     private void delete_electric(String s) {
         jsonTask = new JsonTask();
-        String url = "http://app.e-paytoll.ir/api/Electric/DeleteUserElectricBill/" + s + "/" + Functions.u_id;
+        String url = getResources().getString(R.string.site_url)+"api/Electric/DeleteUserElectricBill/" + s + "/" + Functions.u_id;
         jsonTask.execute(url, "delete_electric");
     }
     private void delete_water(String s) {
         jsonTask = new JsonTask();
-        String url = "http://app.e-paytoll.ir/api/Water/DeleteUserWaterBill/" + s + "/" + Functions.u_id;
+        String url = getResources().getString(R.string.site_url)+"api/Water/DeleteUserWaterBill/" + s + "/" + Functions.u_id;
         jsonTask.execute(url, "delete_water");
     }
     private void delete_telphone(String s) {
         jsonTask = new JsonTask();
-        String url = "http://app.e-paytoll.ir/api/Telphone/DeleteUserTelphoneBill/" + s + "/" + Functions.u_id;
+        String url = getResources().getString(R.string.site_url)+"api/Telphone/DeleteUserTelphoneBill/" + s + "/" + Functions.u_id;
         jsonTask.execute(url, "delete_telphone");
     }
     private void delete_driving(String s) {
         jsonTask = new JsonTask();
-        String url = "http://app.e-paytoll.ir/api/DrivingTicket/DeleteUserDrivingTicketBill/" + s + "/" + Functions.u_id;
+        String url = getResources().getString(R.string.site_url)+"api/DrivingTicket/DeleteUserDrivingTicketBill/" + s + "/" + Functions.u_id;
         jsonTask.execute(url, "delete_driving");
     }
     private void delete_gas(String s) {
         jsonTask = new JsonTask();
-        String url = "http://app.e-paytoll.ir/api/Gas/DeleteUserGasBill/" + s + "/" + Functions.u_id;
+        String url = getResources().getString(R.string.site_url)+"api/Gas/DeleteUserGasBill/" + s + "/" + Functions.u_id;
         jsonTask.execute(url, "delete_gas");
     }
 
@@ -415,12 +415,12 @@ public class MyEshterakList extends AppCompatActivity implements RecyclerViewCli
         load_my_Telphone();
         load_my_driving();
 
-        load_my_eshterak();
+
     }
 
     private void load_my_Electric() {
         jsonTask = new JsonTask();
-        String url = "http://app.e-paytoll.ir/api/Electric/GetBillList/" + Functions.u_id;
+        String url = getResources().getString(R.string.site_url)+"api/Electric/GetBillList/" + Functions.u_id;
         Lag(url);
         jsonTask.execute(url, "show_electric");
 
@@ -428,22 +428,20 @@ public class MyEshterakList extends AppCompatActivity implements RecyclerViewCli
     }
     private void load_my_Water() {
         jsonTask = new JsonTask();
-        String url = "http://app.e-paytoll.ir/api/Water/GetBillList/" + Functions.u_id;
+        String url = getResources().getString(R.string.site_url)+"api/Water/GetBillList/" + Functions.u_id;
         Lag(url);
         jsonTask.execute(url, "show_water");
-
-
     }
     private void load_my_Gas() {
         jsonTask = new JsonTask();
-        String url = "http://app.e-paytoll.ir/api/Gas/GetBillList/" + Functions.u_id;
+        String url = getResources().getString(R.string.site_url)+"api/Gas/GetBillList/" + Functions.u_id;
         jsonTask.execute(url, "show_gas");
 
 
     }
     private void load_my_Telphone() {
         jsonTask = new JsonTask();
-        String url = "http://app.e-paytoll.ir/api/Telphone/GetBillList/" + Functions.u_id;
+        String url = getResources().getString(R.string.site_url)+"api/Telphone/GetBillList/" + Functions.u_id;
         Lag(url);
         jsonTask.execute(url, "show_telphone");
 
@@ -451,7 +449,7 @@ public class MyEshterakList extends AppCompatActivity implements RecyclerViewCli
     }
     private void load_my_driving() {
         jsonTask = new JsonTask();
-        String url = "http://app.e-paytoll.ir/api/DrivingTicket/GetBillList/" + Functions.u_id;
+        String url = getResources().getString(R.string.site_url)+"api/DrivingTicket/GetBillList/" + Functions.u_id;
         Lag(url);
         jsonTask.execute(url, "show_driving");
 
@@ -814,7 +812,6 @@ public class MyEshterakList extends AppCompatActivity implements RecyclerViewCli
 
     public void clk_pay_car(View view) {
 
-
         if (DetailType.equals("car")) {
             mm = new MyAsyncTask();
             last_requested_query = getResources().getString(R.string.site_url) + "do.aspx?param=get_pay_info&CarID=" + item.get(pos).getRadif() + "&rdn=" + String.valueOf(new Random().nextInt());
@@ -829,10 +826,7 @@ public class MyEshterakList extends AppCompatActivity implements RecyclerViewCli
                 startActivity(i);
                 Lag("url=" + UrlForBussiness);
             }
-
         }
-
-
     }
 
     private void load_my_cars() {
@@ -888,7 +882,7 @@ public class MyEshterakList extends AppCompatActivity implements RecyclerViewCli
         LinearLayout btn_pay=findViewById(R.id.btn_pay);
         btn_pay.setVisibility(View.GONE);
         jsonTask = new JsonTask();
-        String url = "http://app.e-paytoll.ir/api/Electric/GetBillInfo/" + s + "/" + Functions.u_id;
+        String url = getResources().getString(R.string.site_url)+"api/Electric/GetBillInfo/" + s + "/" + Functions.u_id;
 //        Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
         jsonTask.execute(url, "search_electric");
 
@@ -912,7 +906,7 @@ public class MyEshterakList extends AppCompatActivity implements RecyclerViewCli
         LinearLayout btn_pay=findViewById(R.id.btn_pay);
         btn_pay.setVisibility(View.GONE);
         jsonTask = new JsonTask();
-        String url = "http://app.e-paytoll.ir/api/Water/GetBillInfo/" + s + "/" + Functions.u_id;
+        String url = getResources().getString(R.string.site_url)+"api/Water/GetBillInfo/" + s + "/" + Functions.u_id;
 //        Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
         jsonTask.execute(url, "search_water");
 
@@ -936,7 +930,7 @@ public class MyEshterakList extends AppCompatActivity implements RecyclerViewCli
         btn_pay.setVisibility(View.GONE);
 
         jsonTask = new JsonTask();
-        String url = "http://app.e-paytoll.ir/api/Telphone/GetBillInfo/" + s + "/" + Functions.u_id;
+        String url = getResources().getString(R.string.site_url)+"api/Telphone/GetBillInfo/" + s + "/" + Functions.u_id;
         Lag(url);
 //        Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
         jsonTask.execute(url, "search_telphone");
@@ -961,7 +955,7 @@ public class MyEshterakList extends AppCompatActivity implements RecyclerViewCli
         btn_pay.setVisibility(View.GONE);
 
         jsonTask = new JsonTask();
-        String url = "http://app.e-paytoll.ir/api/Gas/GetBillInfo/" + s + "/" + Functions.u_id;
+        String url = getResources().getString(R.string.site_url)+"api/Gas/GetBillInfo/" + s + "/" + Functions.u_id;
         //Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
         jsonTask.execute(url, "search_gas");
 
@@ -1003,7 +997,7 @@ public class MyEshterakList extends AppCompatActivity implements RecyclerViewCli
 
 
         jsonTask = new JsonTask();
-        String url = "http://app.e-paytoll.ir/api/DrivingTicket/GetBillInfo/" + s + "/" + Functions.u_id;
+        String url = getResources().getString(R.string.site_url)+"api/DrivingTicket/GetBillInfo/" + s + "/" + Functions.u_id;
         Lag(url);
         jsonTask.execute(url, "search_driving");
 

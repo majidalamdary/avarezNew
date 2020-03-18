@@ -2,6 +2,7 @@
     <string name="app_name">نرم افزار شهروند همراه</string>
     <!--<string name="site_url">http://e-paytoll.ir/Pages/Common/</string>-->
     <string name="site_url">http://app.e-paytoll.ir/</string>
+<!--    <string name="site_url">https://localhost:44386/</string>-->
     <string name="title_activity_drawer_test">DrawerTest</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

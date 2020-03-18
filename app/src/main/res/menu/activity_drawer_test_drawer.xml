@@ -30,6 +30,10 @@
     <item android:title="اطلاعات و ارتباطات">
         <menu>
             <item
+                android:id="@+id/nav_download_last_update"
+                android:icon="@drawable/billing"
+                android:title="دریافت آخرین نسخه" />
+            <item
                 android:id="@+id/nav_contact_us"
                 android:icon="@drawable/viber"
                 android:title="ارتباط با ما" />

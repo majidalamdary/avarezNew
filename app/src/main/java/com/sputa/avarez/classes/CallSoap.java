@@ -1,5 +1,9 @@
 package com.sputa.avarez.classes;
+import android.app.AppComponentFactory;
+import android.support.v7.app.AppCompatActivity;
+
 import com.sputa.avarez.Functions;
+import com.sputa.avarez.R;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.PropertyInfo;
@@ -11,13 +15,13 @@ import java.util.UUID;
 
 import static com.sputa.avarez.Functions.Lag;
 
-public class CallSoap
+public class CallSoap extends AppCompatActivity
 {
     String WSDL_TARGET_NAMESPACE = "http://tempuri.org/";
 
     String SOAP_ADDRESS_Nosazi_Council = "http://testkasbapp.urmia.ir/myservice.asmx";
-    String SOAP_ADDRESS_Nosazi_Mine = "http://app.e-paytoll.ir/nosazi.asmx";
-    String SOAP_ADDRESS_Bussiness_Mine = "http://app.e-paytoll.ir/Bussines.asmx";
+    String SOAP_ADDRESS_Nosazi_Mine =  getResources().getString(R.string.site_url)+"nosazi.asmx";
+    String SOAP_ADDRESS_Bussiness_Mine = getResources().getString(R.string.site_url)+"Bussines.asmx";
 
     public CallSoap()
     {

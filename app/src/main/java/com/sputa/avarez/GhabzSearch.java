@@ -46,6 +46,7 @@ import com.sputa.avarez.classes.StaticWaterGhabz;
 import com.sputa.avarez.model.DrivingBill;
 import com.sputa.avarez.model.ElectricBill;
 import com.sputa.avarez.model.ItemDriving;
+import com.sputa.avarez.model.MobileBill;
 import com.sputa.avarez.model.TelphoneBill;
 import com.sputa.avarez.model.items;
 import com.sputa.avarez.model.items_cars;
@@ -187,6 +188,10 @@ public class GhabzSearch extends AppCompatActivity {
             lbl_title.setText("جستجوی قبض" + " برق ");
         if (ghabz_type.equals("telphone"))
             lbl_title.setText("جستجوی قبض" + " تلفن ");
+        if (ghabz_type.equals("mci"))
+            lbl_title.setText("جستجوی قبض" + " همراه اول ");
+        if (ghabz_type.equals("irancell"))
+            lbl_title.setText("جستجوی قبض" + " ایرانسل ");
 
         String[] arraySpinner = new String[]{
                 "کد ملی", "شماره اشتراک"
@@ -204,6 +209,11 @@ public class GhabzSearch extends AppCompatActivity {
         if (ghabz_type.equals("telphone")) {
             arraySpinner = new String[]{
                     "شماره تلفن"
+            };
+        }
+        if (ghabz_type.equals("mci") || ghabz_type.equals("irancell")) {
+            arraySpinner = new String[]{
+                    "شماره موبایل"
             };
         }
         else if (ghabz_type.equals("gas")) {
@@ -278,6 +288,12 @@ public class GhabzSearch extends AppCompatActivity {
                         et.setHint(" شماره تلفن به همراه کد شهر");
 //                        set_size_txt(R.id.txt_ghabz, .027, "cons");
                         lbl_ghabz.setText("شماره تلفن");
+                    }
+                    if (ghabz_type.equals("mci") || ghabz_type.equals("irancell")) {
+                        EditText et = findViewById(R.id.txt_ghabz);
+                        et.setHint(" شماره 11 رقمی تلفن همراه");
+//                        set_size_txt(R.id.txt_ghabz, .027, "cons");
+                        lbl_ghabz.setText("شماره موبایل");
                     }
                 }
                 if (position == 1) {
@@ -414,6 +430,12 @@ public class GhabzSearch extends AppCompatActivity {
         if (ghabz_type.equals("telphone")) {
             search_telphone_ghabz(s, s1);
         }
+        if (ghabz_type.equals("mci")) {
+            search_mci_ghabz(s, s1);
+        }
+        if (ghabz_type.equals("irancell")) {
+            search_irancell_ghabz(s, s1);
+        }
         if (ghabz_type.equals("driving")) {
             search_driving_ghabz(s, s1);
         }
@@ -425,9 +447,17 @@ public class GhabzSearch extends AppCompatActivity {
 
 
         jsonTask = new JsonTask();
-        String url = "http://app.e-paytoll.ir/api/Gas/GetBillInfo/" + ghabz + "/" + Functions.u_id;
+        String url = getResources().getString(R.string.site_url)+"api/Gas/GetBillInfo/" + ghabz + "/" + Functions.u_id;
         Lag(url);
 //        Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
+        fun.enableDisableView(lay_main, false);
+        RelativeLayout lay_message = findViewById(R.id.lay_message);
+        lay_message.setVisibility(View.VISIBLE);
+        LinearLayout lay_wait = findViewById(R.id.lay_wait);
+        lay_wait.setVisibility(View.VISIBLE);
+        tim=1;
+        is_requested=true;
+
         jsonTask.execute(url, "search_gas");
 
 
@@ -438,9 +468,17 @@ public class GhabzSearch extends AppCompatActivity {
         //Toast.makeText(this, "123", Toast.LENGTH_SHORT).show();
 
         jsonTask = new JsonTask();
-        String url = "http://app.e-paytoll.ir/api/Water/GetBillInfo/" + ghabz + "/" + Functions.u_id;
+        String url = getResources().getString(R.string.site_url)+"api/Water/GetBillInfo/" + ghabz + "/" + Functions.u_id;
         Lag(url);
 //        Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
+        fun.enableDisableView(lay_main, false);
+        RelativeLayout lay_message = findViewById(R.id.lay_message);
+        lay_message.setVisibility(View.VISIBLE);
+        LinearLayout lay_wait = findViewById(R.id.lay_wait);
+        lay_wait.setVisibility(View.VISIBLE);
+        tim=1;
+        is_requested=true;
+
         jsonTask.execute(url, "search_water");
 
 
@@ -450,8 +488,15 @@ public class GhabzSearch extends AppCompatActivity {
 
 
         jsonTask = new JsonTask();
-        String url = "http://app.e-paytoll.ir/api/Electric/GetBillInfo/" + ghabz + "/" + Functions.u_id;
+        String url = getResources().getString(R.string.site_url)+"api/Electric/GetBillInfo/" + ghabz + "/" + Functions.u_id;
 //        Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
+        fun.enableDisableView(lay_main, false);
+        RelativeLayout lay_message = findViewById(R.id.lay_message);
+        lay_message.setVisibility(View.VISIBLE);
+        LinearLayout lay_wait = findViewById(R.id.lay_wait);
+        lay_wait.setVisibility(View.VISIBLE);
+        tim=1;
+        is_requested=true;
         jsonTask.execute(url, "search_electric");
 
 
@@ -549,21 +594,75 @@ public class GhabzSearch extends AppCompatActivity {
     private void search_telphone_ghabz(String eshterak, String ghabz) {
         //Toast.makeText(this, "123", Toast.LENGTH_SHORT).show();
         jsonTask = new JsonTask();
-        String url = "http://app.e-paytoll.ir/api/Telphone/GetBillInfo/" + ghabz + "/" + Functions.u_id;
+        String url = getResources().getString(R.string.site_url)+"api/Telphone/GetBillInfo/" + ghabz + "/" + Functions.u_id;
         ghabz_id = ghabz;
         Lag(url);
 //        Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
+        fun.enableDisableView(lay_main, false);
+        RelativeLayout lay_message = findViewById(R.id.lay_message);
+        lay_message.setVisibility(View.VISIBLE);
+        LinearLayout lay_wait = findViewById(R.id.lay_wait);
+        lay_wait.setVisibility(View.VISIBLE);
+        tim=1;
+        is_requested=true;
+
         jsonTask.execute(url, "search_telphone");
+
+
+    }
+    private void search_mci_ghabz(String eshterak, String ghabz) {
+        //Toast.makeText(this, "123", Toast.LENGTH_SHORT).show();
+        jsonTask = new JsonTask();
+        String url = getResources().getString(R.string.site_url)+"api/Mci/GetBillInfo/" + ghabz + "/" + Functions.u_id;
+        ghabz_id = ghabz;
+        Lag(url);
+//        Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
+        fun.enableDisableView(lay_main, false);
+        RelativeLayout lay_message = findViewById(R.id.lay_message);
+        lay_message.setVisibility(View.VISIBLE);
+        LinearLayout lay_wait = findViewById(R.id.lay_wait);
+        lay_wait.setVisibility(View.VISIBLE);
+        tim=1;
+        is_requested=true;
+
+        jsonTask.execute(url, "search_mci");
+
+
+    }
+    private void search_irancell_ghabz(String eshterak, String ghabz) {
+        //Toast.makeText(this, "123", Toast.LENGTH_SHORT).show();
+        jsonTask = new JsonTask();
+        String url = getResources().getString(R.string.site_url)+"api/Irancell/GetBillInfo/" + ghabz + "/" + Functions.u_id;
+        ghabz_id = ghabz;
+        Lag(url);
+//        Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
+        fun.enableDisableView(lay_main, false);
+        RelativeLayout lay_message = findViewById(R.id.lay_message);
+        lay_message.setVisibility(View.VISIBLE);
+        LinearLayout lay_wait = findViewById(R.id.lay_wait);
+        lay_wait.setVisibility(View.VISIBLE);
+        tim=1;
+        is_requested=true;
+
+        jsonTask.execute(url, "search_irancell");
 
 
     }
     private void search_driving_ghabz(String eshterak, String ghabz) {
         //Toast.makeText(this, "123", Toast.LENGTH_SHORT).show();
         jsonTask = new JsonTask();
-        String url = "http://app.e-paytoll.ir/api/DrivingTicket/GetBillInfo/" + ghabz + "/" + Functions.u_id;
+        String url = getResources().getString(R.string.site_url)+"api/DrivingTicket/GetBillInfo/" + ghabz + "/" + Functions.u_id;
         ghabz_id = ghabz;
         Lag(url);
 //        Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
+        fun.enableDisableView(lay_main, false);
+        RelativeLayout lay_message = findViewById(R.id.lay_message);
+        lay_message.setVisibility(View.VISIBLE);
+        LinearLayout lay_wait = findViewById(R.id.lay_wait);
+        lay_wait.setVisibility(View.VISIBLE);
+        tim=1;
+        is_requested=true;
+
         jsonTask.execute(url, "search_driving");
 
 
@@ -797,35 +896,54 @@ public class GhabzSearch extends AppCompatActivity {
                 .setMessage("آیا می خواهید این اشتراک به لیست اشتراک های من اضافه شود؟")
                 .setPositiveButton("بله", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
+                        fun.enableDisableView(lay_main, false);
+                        RelativeLayout lay_message = findViewById(R.id.lay_message);
+                        lay_message.setVisibility(View.VISIBLE);
+                        LinearLayout lay_wait = findViewById(R.id.lay_wait);
+                        lay_wait.setVisibility(View.VISIBLE);
+                        tim=1;
+                        is_requested=true;
 
                         if(type1.equals("electric"))
                         {
                             jsonTask = new JsonTask();
-                            String url = "http://app.e-paytoll.ir/api/Electric/SaveUserElectricBill/" + id + "/" + Functions.u_id;
+                            String url = getResources().getString(R.string.site_url)+"api/Electric/SaveUserElectricBill/" + id + "/" + Functions.u_id;
                             jsonTask.execute(url, "bookmark_electric");
                         }
                         if(type1.equals("water"))
                         {
                             jsonTask = new JsonTask();
-                            String url = "http://app.e-paytoll.ir/api/Water/SaveUserWaterBill/" + id + "/" + Functions.u_id;
+                            String url = getResources().getString(R.string.site_url)+"api/Water/SaveUserWaterBill/" + id + "/" + Functions.u_id;
                             jsonTask.execute(url, "bookmark_water");
                         }
                         if(type1.equals("telphone"))
                         {
                             jsonTask = new JsonTask();
-                            String url = "http://app.e-paytoll.ir/api/Telphone/SaveUserTelphoneBill/" + id + "/" + Functions.u_id;
+                            String url = getResources().getString(R.string.site_url)+"api/Telphone/SaveUserTelphoneBill/" + id + "/" + Functions.u_id;
                             jsonTask.execute(url, "bookmark_telphone");
+                        }
+                        if(type1.equals("mci"))
+                        {
+                            jsonTask = new JsonTask();
+                            String url = getResources().getString(R.string.site_url)+"api/Mci/SaveUserMciBill/" + id + "/" + Functions.u_id;
+                            jsonTask.execute(url, "bookmark_mci");
+                        }
+                        if(type1.equals("irancell"))
+                        {
+                            jsonTask = new JsonTask();
+                            String url = getResources().getString(R.string.site_url)+"api/Irancell/SaveUserIrancellBill/" + id + "/" + Functions.u_id;
+                            jsonTask.execute(url, "bookmark_irancell");
                         }
                         if(type1.equals("driving"))
                         {
                             jsonTask = new JsonTask();
-                            String url = "http://app.e-paytoll.ir/api/DrivingTicket/SaveUserDrivingTicketBill/" + id + "/" + Functions.u_id;
+                            String url = getResources().getString(R.string.site_url)+"api/DrivingTicket/SaveUserDrivingTicketBill/" + id + "/" + Functions.u_id;
                             jsonTask.execute(url, "bookmark_driving");
                         }
                         if(type1.equals("gas"))
                         {
                             jsonTask = new JsonTask();
-                            String url = "http://app.e-paytoll.ir/api/Gas/SaveUserGasBill/" + id + "/" + Functions.u_id;
+                            String url = getResources().getString(R.string.site_url)+"api/Gas/SaveUserGasBill/" + id + "/" + Functions.u_id;
                             Lag(url);
                             jsonTask.execute(url, "bookmark_gas");
                         }
@@ -1229,14 +1347,92 @@ public class GhabzSearch extends AppCompatActivity {
             TextView lbl_msg = findViewById(R.id.lbl_msg_right);
             TextView lbl_msg_left = findViewById(R.id.lbl_msg_left);
             lbl_msg_left.setVisibility(View.GONE);
-            lbl_msg.setText("خطا در دریافت اطلاعات لطفا شناسه قبض را بررسی کنید");
+            lbl_msg.setText("خطا در دریافت اطلاعات لطفا شماره تلفن را بررسی کنید");
         }
+    }
+    private void HandleResultMci(String jsonResult) {
+        LinearLayout btn_pay = findViewById(R.id.btn_pay);
+        btn_pay.setVisibility(View.GONE);
+
+        LinearLayout btn_detail = findViewById(R.id.btn_detail);
+        btn_detail.setVisibility(View.GONE);
+        Gson gson = new Gson();
+        try {
+            MobileBill telphoneBill = gson.fromJson(jsonResult, MobileBill.class);
+            TextView lbl_msg = findViewById(R.id.lbl_msg_right);
+            TextView lbl_msg_left = findViewById(R.id.lbl_msg_left);
+            lbl_msg_left.setVisibility(View.GONE);
+            String msg = "شناسه پرداخت : " + telphoneBill.PaymnetId + "\n";
+            msg += "شناسه قبض : " + telphoneBill.BillId + "\n";
+            lbl_msg.setText(msg);
 
 
-//
-//
+            TextView lbl_msg_right_detail = findViewById(R.id.lbl_msg_right_detail);
+            TextView lbl_msg_left_detail = findViewById(R.id.lbl_msg_left_detail);
+
+            TextView lbl_price = findViewById(R.id.lbl_price);
+            lbl_price.setVisibility(View.VISIBLE);
+            lbl_price.setText("قابل پرداخت : " + Functions.Cur(telphoneBill.Amount));
 
 
+            if (Integer.valueOf(telphoneBill.Amount) > 0) {
+                PaymentUrl = telphoneBill.PaymentUrl;
+                btn_pay.setVisibility(View.VISIBLE);
+            }
+            //btn_detail.setVisibility(View.VISIBLE);
+            if (!telphoneBill.IsBookMarked) {
+                bookmark_ghabzNew(ghabz_id, "mci");
+            }
+
+
+        } catch (Exception e1) {
+            TextView lbl_msg = findViewById(R.id.lbl_msg_right);
+            TextView lbl_msg_left = findViewById(R.id.lbl_msg_left);
+            lbl_msg_left.setVisibility(View.GONE);
+            lbl_msg.setText("خطا در دریافت اطلاعات لطفا شماره موبایل را بررسی کنید");
+        }
+    }
+    private void HandleResultIrancell(String jsonResult) {
+        LinearLayout btn_pay = findViewById(R.id.btn_pay);
+        btn_pay.setVisibility(View.GONE);
+
+        LinearLayout btn_detail = findViewById(R.id.btn_detail);
+        btn_detail.setVisibility(View.GONE);
+        Gson gson = new Gson();
+        try {
+            MobileBill telphoneBill = gson.fromJson(jsonResult, MobileBill.class);
+            TextView lbl_msg = findViewById(R.id.lbl_msg_right);
+            TextView lbl_msg_left = findViewById(R.id.lbl_msg_left);
+            lbl_msg_left.setVisibility(View.GONE);
+            String msg = "شناسه پرداخت : " + telphoneBill.PaymnetId + "\n";
+            msg += "شناسه قبض : " + telphoneBill.BillId + "\n";
+            lbl_msg.setText(msg);
+
+
+            TextView lbl_msg_right_detail = findViewById(R.id.lbl_msg_right_detail);
+            TextView lbl_msg_left_detail = findViewById(R.id.lbl_msg_left_detail);
+
+            TextView lbl_price = findViewById(R.id.lbl_price);
+            lbl_price.setVisibility(View.VISIBLE);
+            lbl_price.setText("قابل پرداخت : " + Functions.Cur(telphoneBill.Amount));
+
+
+            if (Integer.valueOf(telphoneBill.Amount) > 0) {
+                PaymentUrl = telphoneBill.PaymentUrl;
+                btn_pay.setVisibility(View.VISIBLE);
+            }
+            //btn_detail.setVisibility(View.VISIBLE);
+            if (!telphoneBill.IsBookMarked) {
+                bookmark_ghabzNew(ghabz_id, "irancell");
+            }
+
+
+        } catch (Exception e1) {
+            TextView lbl_msg = findViewById(R.id.lbl_msg_right);
+            TextView lbl_msg_left = findViewById(R.id.lbl_msg_left);
+            lbl_msg_left.setVisibility(View.GONE);
+            lbl_msg.setText("خطا در دریافت اطلاعات لطفا شماره موبایل را بررسی کنید");
+        }
     }
     private void HandleResultWater(String jsonResult) {
         LinearLayout btn_pay = findViewById(R.id.btn_pay);
@@ -1642,6 +1838,12 @@ public class GhabzSearch extends AppCompatActivity {
             if (type.equals("search_telphone")) {
                 HandleResultTelphone(JsonResult);
             }
+            if (type.equals("search_mci")) {
+                HandleResultMci(JsonResult);
+            }
+            if (type.equals("search_irancell")) {
+                HandleResultIrancell(JsonResult);
+            }
             if (type.equals("search_water")) {
                 HandleResultWater(JsonResult);
             }
@@ -1665,8 +1867,18 @@ public class GhabzSearch extends AppCompatActivity {
             }
             if (type.equals("bookmark_telphone")) {
 
-                    Toast.makeText(GhabzSearch.this, "شماره نلفن با موفقیت ذخیره شد", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(GhabzSearch.this, "شماره تلفن با موفقیت ذخیره شد", Toast.LENGTH_SHORT).show();
             }
+            if (type.equals("bookmark_mci") || type.equals("bookmark_irancell")) {
+
+                    Toast.makeText(GhabzSearch.this, "شماره موبایل با موفقیت ذخیره شد", Toast.LENGTH_SHORT).show();
+            }
+            is_requested = false;
+            fun.enableDisableView(lay_main, true);
+            RelativeLayout lay_message = findViewById(R.id.lay_message);
+            lay_message.setVisibility(View.GONE);
+            LinearLayout lay_wait = findViewById(R.id.lay_wait);
+            lay_wait.setVisibility(View.GONE);
         }
     }
 

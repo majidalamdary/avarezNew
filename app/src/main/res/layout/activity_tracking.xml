@@ -314,7 +314,7 @@
         android:visibility="gone">
 
         <LinearLayout
-            android:id="@+id/lay_wait"
+            android:id="@+id/lay_message"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:background="@drawable/btn_white"
